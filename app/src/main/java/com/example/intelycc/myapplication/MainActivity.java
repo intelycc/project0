@@ -10,6 +10,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     static int toastDuration = Toast.LENGTH_SHORT;
+    Toast toast = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +20,16 @@ public class MainActivity extends AppCompatActivity {
 
     public void onButtonClick(View view){
         Button button = (Button)view;
-        Toast toast = Toast.makeText(this, "启动应用:"+ button.getText(), toastDuration);
+        show(button.getText());
+    }
+
+    private void show(CharSequence text){
+        if(toast == null){
+            toast = Toast.makeText(this, "启动应用:"+ text, toastDuration);
+        }else{
+            toast.setText(text);
+        }
+
         toast.show();
     }
 
